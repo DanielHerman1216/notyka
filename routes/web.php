@@ -46,19 +46,17 @@ Route::prefix('feedback')->group(function () {
     Route::get('/success', [FeedbackController::class, 'success'])->name('feedback.success');
 });
 
-// Routes administrateur
-Route::prefix('admin')->middleware(['auth'])->group(function () {
+// Routes administrateur (authentification custom backup)
+Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/resultats', [AdminController::class, 'resultats'])->name('admin.resultats');
     Route::get('/feedbacks', [AdminController::class, 'feedbacks'])->name('admin.feedbacks');
     Route::get('/statistiques', [AdminController::class, 'statistiques'])->name('admin.statistiques');
     Route::get('/notifications', [AdminController::class, 'notifications'])->name('admin.notifications');
     Route::get('/config', [AdminController::class, 'config'])->name('admin.config');
-    
     // Gestion des feedbacks
     Route::put('/feedbacks/{feedback}/status', [AdminController::class, 'updateFeedbackStatus'])->name('admin.feedbacks.status');
     Route::put('/feedbacks/{feedback}/reponse', [AdminController::class, 'repondreFeedback'])->name('admin.feedbacks.reponse');
-    
     // Gestion des notifications
     Route::post('/notifications', [AdminController::class, 'storeNotification'])->name('admin.notifications.store');
     Route::put('/notifications/{notification}', [AdminController::class, 'updateNotification'])->name('admin.notifications.update');

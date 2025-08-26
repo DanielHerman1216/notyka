@@ -15,6 +15,11 @@
                         </ol>
                     </nav>
                     <h2><i class="fas fa-cog me-2"></i>Configuration Système</h2>
+                    @if(isset($user) && $user)
+                        <div class="alert alert-success mb-3">Connecté en tant que : <strong>{{ $user->name }} ({{ $user->email }})</strong></div>
+                    @else
+                        <div class="alert alert-danger mb-3">Aucun utilisateur connecté (session perdue)</div>
+                    @endif
                 </div>
                 <!-- Bouton déconnexion supprimé pour éviter la déconnexion sur la page configuration -->
             </div>

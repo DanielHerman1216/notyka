@@ -111,9 +111,21 @@
                         <i class="fas fa-cog fa-2x text-secondary mb-3"></i>
                         <h5>Configuration</h5>
                         <p class="text-muted">Gérer les paramètres système</p>
-                        <a href="{{ route('admin.config') }}" class="btn btn-secondary">
+                        <a href="{{ route('admin.config') }}" class="btn btn-secondary" id="btn-config">
                             <i class="fas fa-cog me-2"></i>Configuration
                         </a>
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('btn-config');
+    if(btn) {
+        btn.addEventListener('click', function(e) {
+            console.log('Bouton Configuration cliqué, href:', btn.getAttribute('href'));
+        });
+    }
+});
+</script>
+@endpush
                     </div>
                 </div>
             </div>

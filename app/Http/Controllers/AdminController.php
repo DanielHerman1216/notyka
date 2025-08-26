@@ -16,8 +16,13 @@ class AdminController extends Controller
      */
     public function config()
     {
-        // À compléter plus tard avec les données dynamiques si besoin
-        return view('admin.config');
+        \Log::info('Accès à la page configuration', [
+            'user_id' => auth()->id(),
+            'user' => auth()->user()
+        ]);
+        return view('admin.config', [
+            'user' => auth()->user()
+        ]);
     }
 
     /**
