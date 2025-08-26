@@ -44,7 +44,8 @@ class VisitorController extends Controller
             ->orderBy('nom', 'asc')
             ->get();
 
-        return view('visitor.cisco', compact('cisco', 'etablissements'));
+    $examens = \App\Models\Examen::where('actif', true)->orderBy('date', 'asc')->get();
+    return view('visitor.cisco', compact('cisco', 'etablissements', 'examens'));
     }
 
     /**
